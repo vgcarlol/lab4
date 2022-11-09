@@ -1,3 +1,14 @@
+//
+//
+//
+//  @ Project: Laboratorio #4 de POO
+//  @ File Name: Contactos.java
+//  @ Date: 08/11/2022
+//  @ Author: Carlos Alberto Valladares Guerra & Julio Andrés García Salas Pérez
+//
+//
+//
+
 public class Contactos {
     private String nombre;
     private int telefono;
