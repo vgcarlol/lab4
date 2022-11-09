@@ -13,9 +13,12 @@ import java.util.ArrayList;
 
 public class Radio {
     private String marca;
+    private int volume;
     ArrayList<Contactos> contactos = new ArrayList<>();
 
     public Radio() {
+        marca = "Pyooner";
+        volume = 50;
     }
 
     public Radio(String marca) {
@@ -38,16 +41,19 @@ public class Radio {
         this.marca = marca;
     }
 
-    
-    /** 
-     * @param marca
-     * @return Radio
+    /**
+     * @return int
      */
-    public Radio marca(String marca) {
-        setMarca(marca);
-        return this;
+    public int getVolume(){
+        return this.volume;
     }
-
+    
+    /**
+     * @param volume
+     */
+    public void setVolume(int volume){
+        this.volume = volume;
+    }
 
     /**
      * Método para cambiar de FM a AM.
@@ -140,6 +146,13 @@ public class Radio {
 
     }
 
+
+    public void aumentarVolumen(){
+        volume = volume + 1;
+    }
+    public void disminuirVolume(){
+        volume = volume - 1;
+    }
 
     
     /** 
