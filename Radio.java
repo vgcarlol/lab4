@@ -25,6 +25,19 @@ public class Radio {
         volume = 50;
         emisora = 99.5;
         ArrayList<Double> emisoras = new ArrayList<>();
+        Contactos contacto = new Contactos();
+        ArrayList<Contactos> contacto1 = new ArrayList<>();
+        ArrayList<Contactos> contacto2 = new ArrayList<>();
+        ArrayList<Contactos> contacto3 = new ArrayList<>();
+        contacto1.add(contacto);
+        contacto.setNombre("Carlos");
+        contacto.setTelefono(44605615);
+        contacto2.add(contacto);
+        contacto.setNombre("Ana Lucía");
+        contacto.setTelefono(32065423);
+        contacto3.add(contacto);
+        contacto.setNombre("Juan");
+        contacto.setTelefono(52008524);
     }
 
     public Radio(String marca, Double emisora, ArrayList<Double> emisoras) {
@@ -95,6 +108,21 @@ public class Radio {
         this.emisoras = emisoras;
     }
     
+    /**
+     * @return ArrayList<Contactos>
+     */
+    public ArrayList<Contactos> getContactos()
+    {
+        return this.contactos;
+    }
+
+    /**
+     * @param contactos
+     */
+    public void setContactos(ArrayList<Contactos> contactos)
+    {
+        this.contactos = contactos;
+    }
 
     /**
      * Método para cambiar de FM a AM.
@@ -190,29 +218,53 @@ public class Radio {
     /**
      * Método para contectar o desconectar el radio.
      */
-    public void conectarDesconectar(){
+    public void conectarDesconectar(int respuestaConectar, boolean conectado){
+        switch(respuestaConectar){
+            case 1:{
+                if(conectado == false){
+                    System.out.println("Conectando radio...");
+                    conectado = true;
+                }
+                else if(conectado == true){
+                    System.out.println("El radio ya se encontraba conectado.");
+                }
+                break;
+            }
+            case 2:{
+                if(conectado == true){
+                    System.out.println("Desconectando radio...");
+                    conectado = false;
+                    System.out.println("¡Radio desconectanda correctamente!");
+                    System.out.println("¡Esperamos vuelva a utilizar de nuevo esta función!"); 
+                }
+                else if(conectado == false){
+                    System.out.println("No se puede desconectar el radio debido a que se encuentra desconectada actualmente.");
+                }
+                break;
+            }
 
+        }
     }
 
     /**
      * Método para la lista de contactos.
      */
-    public void contactos(){
-         
+    public ArrayList<Contactos> contactos(Contactos contactos){
+        return this.contactos;
     }
 
     /**
      * Método para realizar una llamada a un contacto.
      */
-    public void llamar(){
-
+    public void llamar(int respuestaIngreso){
+        System.out.println("Llamando al número: " + respuestaIngreso);
     }
 
     /**
      * Método para finalizar una llamada en curso.
      */
-    public void finalizarLlamada(){
-
+    public void finalizarLlamada(int respuestaIngreso){
+            System.out.println("Llamada con el contacto con número: " + respuestaIngreso + " ha sido finalizada.");
     }
 
     /**
