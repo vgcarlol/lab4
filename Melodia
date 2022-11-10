@@ -1,0 +1,13 @@
+public class Melodia{
+    private String nombre;
+    private String artista;
+    private int year;
+    private String genero;
+    public Melodia()
+    {
+        nombre = "";
+        artista = "";
+        year = 0;
+        genero = "";
+    }
+}

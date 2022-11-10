@@ -10,11 +10,77 @@
 //
 
 import java.util.Scanner;
-
+import java.lang.invoke.LambdaConversionException;
+import java.util.ArrayList;
 public class Principal{
     public static void main(String[] args) {
         
         Radio laMusicona = new Radio();
+        Melodia cancion = new Melodia();
+        ArrayList<Melodia> playlist1 = new ArrayList<>();
+        ArrayList<Melodia> playlist2 = new ArrayList<>();
+        ArrayList<Melodia> playlist3 = new ArrayList<>();
+        cancion.setArtista("Post malone");
+        cancion.setNombre("circles");
+        cancion.setGenero("rap");
+        cancion.setYear(2018);
+        playlist1.add(cancion);
+        cancion.setArtista("Maria Becerra");
+        cancion.setNombre("Mi debilidad");
+        cancion.setGenero("reggaeton");
+        cancion.setYear(2021);
+        playlist1.add(cancion);
+        cancion.setArtista("Rusherking");
+        cancion.setNombre("Otra noche más");
+        cancion.setGenero("balada");
+        cancion.setYear(2020);
+        playlist1.add(cancion);
+        cancion.setArtista("Wos");
+        cancion.setNombre("Arrancarmelo");
+        cancion.setGenero("balada");
+        cancion.setYear(2022);
+        playlist1.add(cancion);
+        cancion.setArtista("Maria Becerra");
+        cancion.setNombre("ojalá");
+        cancion.setGenero("reggaeton");
+        cancion.setYear(2022);
+        playlist2.add(cancion);
+        cancion.setArtista("Mora");
+        cancion.setNombre("memorias");
+        cancion.setGenero("EDM");
+        cancion.setYear(2022);
+        playlist2.add(cancion);
+        cancion.setArtista("Mora");
+        cancion.setNombre("modelito");
+        cancion.setGenero("trap");
+        cancion.setYear(2022);
+        playlist2.add(cancion);
+        cancion.setArtista("Feid");
+        cancion.setNombre("Prohibidox");
+        cancion.setGenero("reggaeton");
+        cancion.setYear(2022);
+        playlist2.add(cancion);
+        cancion.setArtista("Tiago Pzk");
+        cancion.setNombre("Entre nosotros");
+        cancion.setGenero("rnb");
+        cancion.setYear(2021);
+        playlist3.add(cancion);
+        cancion.setArtista("Juan Luis Guerra");
+        cancion.setNombre("Bachata en fukuoka");
+        cancion.setGenero("bachata");
+        cancion.setYear(2012);
+        playlist3.add(cancion);
+        cancion.setArtista("Morat");
+        cancion.setNombre("Salir con vida");
+        cancion.setGenero("pop");
+        cancion.setYear(2022);
+        playlist3.add(cancion);
+        cancion.setArtista("Dekko");
+        cancion.setNombre("El cielo se me cayó");
+        cancion.setGenero("reggaeton");
+        cancion.setYear(2022);
+        playlist3.add(cancion);
+        
 
         boolean radioEncendido = false;
 
@@ -65,10 +131,106 @@ public class Principal{
                         break;
                     }
                     case 3:{
-                        /* Añadir todas las funciones del modo Radio comparando si el radio se encuentra encendido */
+                        int entrada;
+                        int respuestaEmi;
+                        int respuestaEmisoras;
+                        int respuestaIngreso;
+                        int cantidadEmi;
+                        int respuestaCargar;
+                        int entradaCargo;
+                        double emisora = 0.00;
+                        String operador = "";
+                        laMusicona.cambiarFmAm();
+                        System.out.println("La emisora actual es:" + laMusicona.getEmisora());
+                        System.out.println("¿Quieres modificar la emisora? \n [1] si \n [2] no ");
+                        respuestaEmi = teclado.nextInt();
+                        if(respuestaEmi == 1)
+                        {
+                            System.out.println("¿Deseas aumentar o disminuir la emisora? \n [1] + \n [2] -");
+                            entrada = teclado.nextInt();
+                            if(entrada == 1)
+                            {
+                                operador = "+";
+                            }else if(entrada == 2)
+                            {
+                                operador = "-";
+                            }
+                            laMusicona.cambiarEmisora(operador);
+                        }
+                        System.out.println("¿Deseas guardar una emisora? \n [1] si \n [2] no");
+                        respuestaEmisoras = teclado.nextInt();
+                        if(respuestaEmisoras == 1)
+                        {
+                            System.out.println("¿Deseas guardar la emisora actual o ingresar una emisora? \n [1] Actual \n [2] Ingresar");
+                            respuestaIngreso = teclado.nextInt();
+                            if(respuestaIngreso == 1)
+                            {
+                                laMusicona.guardarEmisora(laMusicona.getEmisora());
+                            }else if(respuestaIngreso == 2)
+                            {
+                                System.out.println("¿Cuántas emisoras deseas guardar?: ");
+                                cantidadEmi = teclado.nextInt();
+                                for(int i = 0; i<cantidadEmi; i++)
+                                {
+                                    System.out.println("Ingresa la emisora que deseas guardar: ");
+                                    emisora = teclado.nextDouble();
+                                    laMusicona.guardarEmisora(emisora);
+                                }
+                            }
+                        }
+                        System.out.println("¿Deseas cargar una emisora? \n [1] si \n [2] no");
+                        respuestaCargar = teclado.nextInt();
+                        if(respuestaCargar == 1)
+                        {
+                            System.out.println("Las emisoras que puedes cargar son \n ");
+                            for(int i = 0; i<laMusicona.getEmisoras().size(); i++)
+                            {
+                                System.out.println(i + laMusicona.getEmisoras().get(i));
+                            }
+                            System.out.println("¿Cuál deseas cargar?: \n");
+                            entradaCargo = teclado.nextInt();
+                            emisora = laMusicona.getEmisoras().get(entradaCargo);
+                            laMusicona.cargarEmisora(emisora);
+                        }
+
+                        break;
                     }
                     case 4:{
                         /* Añadir todas las funciones del modo Reproducción comparando si el radio se encuentra encendido */
+                        int seleccionPlaylist;
+                        int cambiarCancion = 0;
+                        int direccion = 0;
+                        int eleccionCancion = 0;
+                        
+                        System.out.println("¡Selecciona una lista! ");
+                        System.out.println("playlist 1: \n" + playlist1 + "\nplaylist 2: \n" + playlist2 + "\nplaylist 3: \n" + playlist3);
+                        seleccionPlaylist = teclado.nextInt();
+                        if(seleccionPlaylist == 1)
+                        {
+                            System.out.println("¿Qué cancion deseas escuchar?: ");
+                            eleccionCancion = teclado.nextInt();
+                            laMusicona.escucharCancion(playlist1, eleccionCancion);
+                            System.out.println("¿Deseas cambiar la canción: \n [1] si \n [2] no");
+                            while(cambiarCancion !=2)
+                            {
+                                if(cambiarCancion == 1){
+                                    System.out.println("¿Deseas ir para adelante o para atras en la playlist? \n [1] para adelante \n [2] para atras");
+                                    if(direccion == 1)
+                                    {
+                                        playlist1.get(eleccionCancion + 1).toString();
+                                        laMusicona.cambiarCancion(direccion);
+                                    }else if(direccion == 2){
+                                        playlist1.get(eleccionCancion - 1).toString();
+                                        laMusicona.cambiarCancion(direccion);
+                                    }
+
+                                }
+                            }
+                        }
+                        break;
+
+
+                        
                     }
                     case 5:{
                         /* Añadir todas las funciones del modo Teléfono comparando si el radio se encuentra encendido */
