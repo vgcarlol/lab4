@@ -9,17 +9,17 @@
 //
 //
 
-public class Contactos {
+public class contactos {
     private String nombre;
-    private int telefono;
+    private int numero;
 
 
-    public Contactos() {
+    public contactos() {
     }
 
-    public Contactos(String nombre, int telefono) {
+    public contactos(String nombre, int numero) {
         this.nombre = nombre;
-        this.telefono = telefono;
+        this.numero = numero;
     }
 
     
@@ -42,16 +42,16 @@ public class Contactos {
     /** 
      * @return int
      */
-    public int getTelefono() {
-        return this.telefono;
+    public int getnumero() {
+        return this.numero;
     }
 
     
     /** 
-     * @param telefono
+     * @param numero
      */
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public void setnumero(int numero) {
+        this.numero = numero;
     }
 
     
@@ -59,18 +59,18 @@ public class Contactos {
      * @param nombre
      * @return Contactos
      */
-    public Contactos nombre(String nombre) {
+    public contactos nombre(String nombre) {
         setNombre(nombre);
         return this;
     }
 
     
     /** 
-     * @param telefono
+     * @param numero
      * @return Contactos
      */
-    public Contactos telefono(int telefono) {
-        setTelefono(telefono);
+    public contactos numero(int numero) {
+        setnumero(numero);
         return this;
     }
 
@@ -82,7 +82,7 @@ public class Contactos {
     public String toString() {
         return
             "Nombre del contacto: " + getNombre() + "" +
-            "\nNúmero de teléfono: " + getTelefono() + "";
+            "\nNúmero de teléfono: " + getnumero() + "";
     }
 
 }

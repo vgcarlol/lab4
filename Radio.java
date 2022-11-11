@@ -8,295 +8,358 @@
 //
 //
 //
-
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.lang.Double;
 
-public class Radio {
-    private String marca;
-    private int volume;
-    private Double emisora;
-    private ArrayList<Double> emisoras;
-    ArrayList<Contactos> contactos = new ArrayList<>();
-    Scanner teclado = new Scanner(System.in);
+import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
 
-    public Radio() {
-        marca = "Pyooner";
-        volume = 50;
-        emisora = 99.5;
-        ArrayList<Double> emisoras = new ArrayList<>();
-        Contactos contacto = new Contactos();
-        ArrayList<Contactos> contacto1 = new ArrayList<>();
-        ArrayList<Contactos> contacto2 = new ArrayList<>();
-        ArrayList<Contactos> contacto3 = new ArrayList<>();
-        contacto1.add(contacto);
-        contacto.setNombre("Carlos");
-        contacto.setTelefono(44605615);
-        contacto2.add(contacto);
-        contacto.setNombre("Ana Lucía");
-        contacto.setTelefono(32065423);
-        contacto3.add(contacto);
-        contacto.setNombre("Juan");
-        contacto.setTelefono(52008524);
+public class radio implements Acciones{
+    //atributos
+    private int volumen;
+    private String FmAm;
+    private double EmisoraActual;
+    private int NumListaCancionUsar;
+    private boolean ModoTelefonoConexion;
+    private int cancionActual;
+    private int ultContactoLlamado;
+    private ArrayList<Double> ListaEmisoras;
+    private ArrayList<contactos> ListaContactos;
+    private ArrayList<Cancion> ListaCanciones1;
+    private ArrayList<Cancion> ListaCanciones2;
+    private ArrayList<TarjetaPresentacion> listadoTarjetaPresentacion;
+
+    //constructor
+    public radio() {
+        this.volumen = 10;
+        this.FmAm = "FM";
+        this.EmisoraActual = 0.00;
+        this.NumListaCancionUsar = 0;
+        this.ModoTelefonoConexion = false;
+        this.cancionActual = 0;
+        this.ultContactoLlamado = 0;
+        this.ListaEmisoras = new ArrayList<Double>();
+        this.ListaContactos = new ArrayList<contactos>();
+        this.ListaCanciones1 = new ArrayList<Cancion>();
+        this.ListaCanciones2 = new ArrayList<Cancion>();
+        this.listadoTarjetaPresentacion = new ArrayList<TarjetaPresentacion>();
     }
 
-    public Radio(String marca, Double emisora, ArrayList<Double> emisoras) {
-        this.marca = marca;
-        this.emisora = emisora;
-        this.emisoras = emisoras;
+    //Setters y getters.
+    public int getVolumen() {
+        return this.volumen;
     }
 
-    
-    /** 
-     * @return String
-     */
-    public String getMarca() {
-        return this.marca;
+    public void setVolumen(int volumen) {
+        this.volumen = volumen;
     }
 
-    
-    /** 
-     * @param marca
-     */
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public String getFmAm() {
+        return this.FmAm;
     }
 
-    /**
-     * @return int
-     */
-    public int getVolume(){
-        return this.volume;
-    }
-    
-    /**
-     * @param volume
-     */
-    public void setVolume(int volume){
-        this.volume = volume;
+    public void setFmAm(String FmAm) {
+        this.FmAm = FmAm;
     }
 
-    /**
-     * @return double
-     */
-    public double getEmisora()
-    {
-        return this.emisora;
+    public double getEmisoraActual() {
+        return this.EmisoraActual;
     }
 
-    /**
-     * @param emisora
-     */   
-    public void setEmisora(Double emisora)
-    {
-        this.emisora = emisora;
-    } 
+    public void setEmisoraActual(double EmisoraActual) {
+        this.EmisoraActual = EmisoraActual;
+    }
 
-    /**
-     * @return ArrayList<Double>
-     */
-    public ArrayList<Double> getEmisoras()
-    {
-        return this.emisoras;
+    public int getNumListaCancionUsar() {
+        return this.NumListaCancionUsar;
+    }
+
+    public void setNumListaCancionUsar(int NumListaCancionUsar) {
+        this.NumListaCancionUsar = NumListaCancionUsar;
+    }
+
+    public boolean isModoTelefonoConexion() {
+        return this.ModoTelefonoConexion;
+    }
+
+    public boolean getModoTelefonoConexion() {
+        return this.ModoTelefonoConexion;
+    }
+
+    public void setModoTelefonoConexion(boolean ModoTelefonoConexion) {
+        this.ModoTelefonoConexion = ModoTelefonoConexion;
     }
 
     /**
-     * @param emisoras
+     * @return ArrayList<Double> return the ListaEmisoras
      */
-    public void setEmisoras(ArrayList<Double> emisoras)
-    {
-        this.emisoras = emisoras;
-    }
-    
-    /**
-     * @return ArrayList<Contactos>
-     */
-    public ArrayList<Contactos> getContactos()
-    {
-        return this.contactos;
+    public ArrayList<Double> getListaEmisoras() {
+        return ListaEmisoras;
     }
 
     /**
-     * @param contactos
+     * @param ListaEmisoras the ListaEmisoras to set
      */
-    public void setContactos(ArrayList<Contactos> contactos)
-    {
-        this.contactos = contactos;
+    public void setListaEmisoras(ArrayList<Double> ListaEmisoras) {
+        this.ListaEmisoras = ListaEmisoras;
+    }
+
+    public ArrayList<contactos> getListaContactos() {
+        return this.ListaContactos;
+    }
+
+    public void setListaContactos(ArrayList<contactos> ListaContactos) {
+        this.ListaContactos = ListaContactos;
+    }
+
+    public ArrayList<Cancion> getListaCanciones1() {
+        return this.ListaCanciones1;
+    }
+
+    public void setListaCanciones1(ArrayList<Cancion> ListaCanciones1) {
+        this.ListaCanciones1 = ListaCanciones1;
+    }
+
+    public ArrayList<Cancion> getListaCanciones2() {
+        return this.ListaCanciones2;
+    }
+
+    public void setListaCanciones2(ArrayList<Cancion> ListaCanciones2) {
+        this.ListaCanciones2 = ListaCanciones2;
     }
 
     /**
-     * Método para cambiar de FM a AM.
+     * @return ArrayList<TarjetaPresentacion> return the listadoTarjetaPresentacion
      */
+    public ArrayList<TarjetaPresentacion> getListadoTarjetaPresentacion() {
+        return listadoTarjetaPresentacion;
+    }
 
-    public String cambiarFmAm(){
-        boolean estado = true;
-        String estadoFM = "la radio está en FM";
-        String estadoAM = "la radio está en AM";
-        int respuestaCamb;
-        String estadoActual;
-        System.out.println("¿Deseas la radio en FM o AM? \n [1] FM \n [2] AM ");
-        respuestaCamb = teclado.nextInt();
-        if(respuestaCamb == 1)
-         {
-            estado = true;
-        }else if(respuestaCamb == 2)
-        {
-            estado = false;
+    /**
+     * @param listadoTarjetaPresentacion the listadoTarjetaPresentacion to set
+     */
+    public void setListadoTarjetaPresentacion(ArrayList<TarjetaPresentacion> listadoTarjetaPresentacion) {
+        this.listadoTarjetaPresentacion = listadoTarjetaPresentacion;
+    }
+
+    /**
+     * @return int return the cancionActual
+     */
+    public int getCancionActual() {
+        return cancionActual;
+    }
+
+    /**
+     * @param cancionActual the cancionActual to set
+     */
+    public void setCancionActual(int cancionActual) {
+        this.cancionActual = cancionActual;
+    }
+
+    /**
+     * @return int return the ultContactoLlamado
+     */
+    public int getUltContactoLlamado() {
+        return ultContactoLlamado;
+    }
+
+    /**
+     * @param ultContactoLlamado the ultContactoLlamado to set
+     */
+    public void setUltContactoLlamado(int ultContactoLlamado) {
+        this.ultContactoLlamado = ultContactoLlamado;
+    }
+
+    // --------------------------------------------- Metodos ---------------------------------------------
+    public String cambiarVolumen(String vol){
+        String r = "Volumen: ";
+        if(vol.equalsIgnoreCase("+")){
+            this.volumen = this.volumen + 1;
+            r = r + getVolumen();
         }
-        if(estado)
-        {
-            estadoActual = estadoFM;
-        }else
-        {
-            estadoActual = estadoAM;
-        };
-        return estadoActual;
-    }
-
-    /**
-     * Método para cambiar de emisora.
-     */
-    public String cambiarEmisora(String operador){
-        String cadena = "";
-        if(operador == "+")
-        {
-            emisora += 0.5;
-            cadena = "Se ha cambiado la emisora a + 0.5";
-        }else if(operador == "-")
-        {
-            emisora -= 0.5;
-            cadena = "Se ha cambiado la emisora a - 0.5";
+        else if(vol.equalsIgnoreCase("-")){
+            this.volumen = this.volumen - 1;
+            r = r + getVolumen();
         }
-        return cadena;
+        return r;
     }
 
-    /**
-     * Método para guardar la emisora.
-     */
-    public String guardarEmisora(double emisora){
-        emisoras.add(emisora);
-        return "se ha guardado la emisora: " + emisora;
-    }
-
-    /**
-     * Método para cargar una emisora.
-     */
-    public String cargarEmisora(double emisora){
-        return "se ha cargado la emisora: " + emisora;
-    }
-
-    /**
-     * Método para seleccionar una lista de reproducción
-     */
-    public String seleccionarLista(){
-        return "se ha seleccionado la lista!";
-    }
-
-    /**
-     * Método para retroceder o avanzar una canción
-     */
-    public String cambiarCancion(int direccion){
-        String cadena1 = "";
-        if(direccion == 1)
-        {
-            cadena1 = "Se ha cambiado a la siguiente canción!";
-        }else if(direccion == 2)
-        {
-            cadena1 = "Se ha cambiado la canción previa!";
+    public String imprimirListaEmisoras(){
+        String r = " --- Listado de Emisoras ---\n";
+        for (int i = 0 ; i<ListaEmisoras.size(); i++){
+            r  = r + " ( " + i + " ) " + ListaEmisoras.get(i) + "\n";
         }
-        return cadena1;
+        return r;
     }
 
-    /**
-     * Método para escuchar una canción.
-     */
-    public String escucharCancion(ArrayList<Melodia> canciones, int eleccionCancion){
-        String cancionEscuchada = canciones.get(eleccionCancion).toString();
-        return cancionEscuchada;
-    }
+    public String imprimirListaCanciones(){
+        String r = " --- Listado de Canciones No." + getNumListaCancionUsar() + "\n";
 
-    /**
-     * Método para contectar o desconectar el radio.
-     */
-    public void conectarDesconectar(int respuestaConectar, boolean conectado){
-        switch(respuestaConectar){
-            case 1:{
-                if(conectado == false){
-                    System.out.println("Conectando radio...");
-                    conectado = true;
-                }
-                else if(conectado == true){
-                    System.out.println("El radio ya se encontraba conectado.");
-                }
-                break;
+        if(getNumListaCancionUsar() == 1){
+            for (int i=0 ; i<ListaCanciones1.size() ; i++){
+                r = r + " " + i + ". " + ListaCanciones1.get(i).toString() + "\n";
             }
-            case 2:{
-                if(conectado == true){
-                    System.out.println("Desconectando radio...");
-                    conectado = false;
-                    System.out.println("¡Radio desconectanda correctamente!");
-                    System.out.println("¡Esperamos vuelva a utilizar de nuevo esta función!"); 
-                }
-                else if(conectado == false){
-                    System.out.println("No se puede desconectar el radio debido a que se encuentra desconectada actualmente.");
-                }
-                break;
-            }
-
         }
+        else if(getNumListaCancionUsar() == 2){
+            for (int i=0 ; i<ListaCanciones2.size() ; i++){
+                r = r + " " + i + ". " + ListaCanciones2.get(i).toString() + "\n";
+            }
+        }
+
+        return r;
     }
 
-    /**
-     * Método para la lista de contactos.
-     */
-    public ArrayList<Contactos> contactos(Contactos contactos){
-        return this.contactos;
+    // metodos de la interfaz
+    //MODO RADIO ---------------------------------------------------------------------------------------------------------------------
+    @Override
+    public String cambiarFmAm() {
+        String r = "Cambiando de "+ getFmAm()+"...";
+        if (getFmAm()=="FM"){ 
+            setFmAm("AM");
+            r = r + "\n Cambiado a AM";
+        }
+        else if (getFmAm()=="AM") {
+            setFmAm("FM");
+            r = r + "\n Cambiado a FM";
+        }
+        return r;
     }
 
-    /**
-     * Método para realizar una llamada a un contacto.
-     */
-    public void llamar(int respuestaIngreso){
-        System.out.println("Llamando al número: " + respuestaIngreso);
+    @Override
+    public String cambiarEmisora(String operador) {
+        String r = "Emisora: " + getFmAm();
+        if(operador.equalsIgnoreCase("+")){ //aumenta la emisora en un intevalos de 0.5
+            this.EmisoraActual = this.EmisoraActual + 0.5;
+        }
+        else if(operador.equalsIgnoreCase("-")){ //disminuye la emisora en un intevalos de 0.5
+            this.EmisoraActual = this.EmisoraActual - 0.5;
+        }
+        r = r + " " + getEmisoraActual();
+        return r;
     }
 
-    /**
-     * Método para finalizar una llamada en curso.
-     */
-    public void finalizarLlamada(int respuestaIngreso){
-            System.out.println("Llamada con el contacto con número: " + respuestaIngreso + " ha sido finalizada.");
+    @Override
+    public String guardarEmisora(String emisora) {
+        double n = Double.parseDouble(emisora);
+        ListaEmisoras.add(n);
+        return "Emisora " + n + " guardada";
     }
 
-    /**
-     * Método para llamar al último contacto de la lista.
-     */
-    public void llamarUltimoContacto(){
-
+    @Override
+    public String cargarEmisora(int emisora) {
+        String r = "Emisora: " + ListaEmisoras.get(emisora);
+        setEmisoraActual(ListaEmisoras.get(emisora));
+        return r; 
     }
 
-    /**
-     * Método para ver las tarjetas de presentación.
-     */
-    public void verTarjetasPresentacion(){
-
+    //MODO  REPRODUCCION---------------------------------------------------------------------------------------------------------------------
+    @Override
+    public String seleccionarLista(int i) {
+        String r = " -- Lista de Cancion seleccionada" + i ;
+        setNumListaCancionUsar(i);
+        return r;
     }
 
-
-    public void aumentarVolumen(){
-        volume = volume + 1;
-    }
-    public void disminuirVolume(){
-        volume = volume - 1;
-    }
-
-    
-    /** 
-     * @return String
+     /**
+     * Metodo para cambiar la cacion
+     * @param direccion 1. siguiente 2. anterior
+     * @return Regresa los datos de la cancion en display
      */
     @Override
-    public String toString() {
-        return
-            "La marca del radio es: " + getMarca() + "";
+    public String cambiarCancion(int direccion) {
+        String r = "Cancion cambiada: \n ";
+        if(direccion == 1){
+            this.cancionActual = this.cancionActual + 1;
+        }
+        else if(direccion == 2){
+            this.cancionActual = this.cancionActual - 1;
+        }
+
+        if(NumListaCancionUsar == 1){
+            if(ListaCanciones1.size() >= this.cancionActual && this.cancionActual>=0){
+                r = r + ListaCanciones1.get(this.cancionActual).toString();
+            }
+            else { r = "No existe una cancion en la direccion deseada"; }
+        }
+        else if(NumListaCancionUsar ==2){
+            if(ListaCanciones2.size() >= this.cancionActual && this.cancionActual>=0){
+                r = r + ListaCanciones2.get(this.cancionActual).toString();
+            }
+            else { r = "No existe una cancion en la direccion deseada"; }
+        }
+
+        return r;
     }
+
+    @Override
+    public String escucharCancion(int i) {
+        String r = "Reproduciendo... \n";
+
+        if(getNumListaCancionUsar() == 1){
+            ListaCanciones1.get(i).toString();
+        }
+        else if (getNumListaCancionUsar() == 2){
+            ListaCanciones2.get(i).toString();
+        }
+
+        return r;
+    }
+   
+    //MODO  TELEFONO---------------------------------------------------------------------------------------------------------------------
+    @Override
+    public boolean conectarDesconectar() {
+        if(getModoTelefonoConexion() == false){
+            setModoTelefonoConexion(true);
+        }
+        else if(getModoTelefonoConexion()){
+            setModoTelefonoConexion(false);
+        }
+
+        return getModoTelefonoConexion();
+    }
+
+    @Override
+    public String contactos() { //imprimir contactos
+        String r = " ---- Lista de Contactos --- \n";
+        for(int i = 0; i<ListaContactos.size() ; i++){
+            r = r + " [" + i + "] " + ListaContactos.get(i).toString() + "\n";
+        }
+        return r;
+    }
+
+    @Override
+    public String llamar(int contacto) {
+        String r = "";
+        if(contacto > ListaContactos.size()){
+            r = "Contacto no exite";
+        }
+        else{
+            setUltContactoLlamado(contacto);
+            r = " ~~ Llamando a: " + ListaContactos.get(contacto).toString();
+        }
+        return r;
+    }
+
+    @Override
+    public String finalizarLlamada() {
+        return "Llamada finalizada...";
+    }
+
+    @Override
+    public String llamarUltimoContacto() {
+        return llamar(getUltContactoLlamado());
+    }
+
+    //MODO  PRODUCTIVIDAD ---------------------------------------------------------------------------------------------------------------------
+    @Override
+    public String verTarjetasPresentacion() {
+        String r = " ---- Tarjetas de presentacion ----\n";
+        for(int i = 0; i<listadoTarjetaPresentacion.size() ; i++){
+            r = r + " (" + i + ") " + listadoTarjetaPresentacion.get(i).toString() + "\n";
+        }
+        return r;
+    }
+
+
+    
 
 }

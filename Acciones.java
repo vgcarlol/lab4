@@ -17,16 +17,16 @@ public interface Acciones {
      * @param emisora  recibe un valor de emisora (ej: 105.90, 90.80, 15.10) Este metodo ingresa el valor en un array.
      * @return String diciendo "Emisora ## guardada"
      */
-    public String guardarEmisora(double emisora);
+    public String guardarEmisora(String emisora);
     /**
      * Metodo para caragar una emisora se recomienda mostrar la lista de emisoras guardadas y enumararlas.
      * @param emisora int del numero de la posicion de emisora a mostrar 
      * @return devuelve el numero de emisora.
      */
-    public String cargarEmisora(double emisora);
+    public String cargarEmisora(int emisora);
     //------------------------------------------------------------------------------------------------------------------------------------------------
     //Modo reproduccion
-    public String seleccionarLista();
+    public String seleccionarLista(int i);
     /**
      * Metodo para cambiar la cacion
      * @param direccion 1. siguiente 2. anterior

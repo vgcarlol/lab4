@@ -15,73 +15,27 @@ import java.util.ArrayList;
 public class Principal{
     public static void main(String[] args) {
         
-        Radio laMusicona = new Radio();
-        Melodia cancion = new Melodia();
-        ArrayList<Melodia> playlist1 = new ArrayList<>();
-        ArrayList<Melodia> playlist2 = new ArrayList<>();
-        ArrayList<Melodia> playlist3 = new ArrayList<>();
-        cancion.setArtista("Post malone");
-        cancion.setNombre("circles");
-        cancion.setGenero("rap");
-        cancion.setYear(2018);
-        playlist1.add(cancion);
-        cancion.setArtista("Maria Becerra");
-        cancion.setNombre("Mi debilidad");
-        cancion.setGenero("reggaeton");
-        cancion.setYear(2021);
-        playlist1.add(cancion);
-        cancion.setArtista("Rusherking");
-        cancion.setNombre("Otra noche más");
-        cancion.setGenero("balada");
-        cancion.setYear(2020);
-        playlist1.add(cancion);
-        cancion.setArtista("Wos");
-        cancion.setNombre("Arrancarmelo");
-        cancion.setGenero("balada");
-        cancion.setYear(2022);
-        playlist1.add(cancion);
-        cancion.setArtista("Maria Becerra");
-        cancion.setNombre("ojalá");
-        cancion.setGenero("reggaeton");
-        cancion.setYear(2022);
-        playlist2.add(cancion);
-        cancion.setArtista("Mora");
-        cancion.setNombre("memorias");
-        cancion.setGenero("EDM");
-        cancion.setYear(2022);
-        playlist2.add(cancion);
-        cancion.setArtista("Mora");
-        cancion.setNombre("modelito");
-        cancion.setGenero("trap");
-        cancion.setYear(2022);
-        playlist2.add(cancion);
-        cancion.setArtista("Feid");
-        cancion.setNombre("Prohibidox");
-        cancion.setGenero("reggaeton");
-        cancion.setYear(2022);
-        playlist2.add(cancion);
-        cancion.setArtista("Tiago Pzk");
-        cancion.setNombre("Entre nosotros");
-        cancion.setGenero("rnb");
-        cancion.setYear(2021);
-        playlist3.add(cancion);
-        cancion.setArtista("Juan Luis Guerra");
-        cancion.setNombre("Bachata en fukuoka");
-        cancion.setGenero("bachata");
-        cancion.setYear(2012);
-        playlist3.add(cancion);
-        cancion.setArtista("Morat");
-        cancion.setNombre("Salir con vida");
-        cancion.setGenero("pop");
-        cancion.setYear(2022);
-        playlist3.add(cancion);
-        cancion.setArtista("Dekko");
-        cancion.setNombre("El cielo se me cayó");
-        cancion.setGenero("reggaeton");
-        cancion.setYear(2022);
-        playlist3.add(cancion);
-
-        
+        radio laMusicona = new radio();
+        Cancion circles = new Cancion("Circles","3:00","Post Malone","Rap");
+        laMusicona.getListaCanciones1().add(circles);
+        Cancion miDebilidad = new Cancion("Mi Debilidad", "2:46", "Maria Becerra", "Reggaeton");
+        laMusicona.getListaCanciones1().add(miDebilidad);
+        Cancion otraNocheMas = new Cancion("Otra noche mas", "2:15", "Rusherking","balada");
+        laMusicona.getListaCanciones1().add(otraNocheMas);
+        Cancion arrancarmelo = new Cancion("Arrancarmelo", "3:03", "Wos", "Balada");
+        laMusicona.getListaCanciones1().add(arrancarmelo);
+        Cancion ojala = new Cancion("Ojala", "2:40", "Maria Becerra", "Reggaeton");
+        laMusicona.getListaCanciones1().add(ojala);
+        Cancion memorias = new Cancion("Memorias", "3:48", "Jhay Cortez y Mora", "EDM Reggaeton");
+        laMusicona.getListaCanciones2().add(memorias);
+        Cancion modelito = new Cancion("Modelito","3:10","Mora y YVNGCHIMI","trap y reggaeton");
+        laMusicona.getListaCanciones2().add(modelito);
+        Cancion prohibidox = new Cancion("Prohibidox", "2:46","Feid","Reggaeton");
+        laMusicona.getListaCanciones2().add(prohibidox);
+        Cancion entreNostoros = new Cancion("Entre Nosotros","3:12","Tiago PZK y Lit Killah","RnB");
+        laMusicona.getListaCanciones2().add(entreNostoros);
+        Cancion bachataEnFukuoka = new Cancion("Bachata en fukuoka","3:37","Juan Luis Guerra","bachata");
+        laMusicona.getListaCanciones2().add(bachataEnFukuoka);
 
         boolean radioEncendido = false;
 
@@ -116,20 +70,20 @@ public class Principal{
                     case 2:{
                         if(radioEncendido == true){
                             int cambio = 0;
-                            System.out.println("Volumen actual: " + laMusicona.getVolume() + "% \nIngrese si desea aumentar o disminuir el volumen: \n1. Aumentar \n2. Disminuir.");
+                            System.out.println("Volumen actual: " + laMusicona.getVolumen() + "% \nIngrese si desea aumentar o disminuir el volumen: \n1. Aumentar \n2. Disminuir.");
                             cambio = teclado.nextInt();
                             teclado.nextLine();
                             switch(cambio){
                                 case 1:{
                                     System.out.println("Volumen aumentado correctamente...");
-                                    laMusicona.aumentarVolumen();
-                                    System.out.println("Volumen actual: " + laMusicona.getVolume() + "%");
+                                    laMusicona.cambiarVolumen("+");
+                                    System.out.println("Volumen actual: " + laMusicona.getVolumen() + "%");
                                     break;
                                 }
                                 case 2:{
                                     System.out.println("Volumen disminuido correctamente...");
-                                    laMusicona.disminuirVolume();
-                                    System.out.println("Volumen actual: " + laMusicona.getVolume() + "%");
+                                    laMusicona.cambiarVolumen("-");
+                                    System.out.println("Volumen actual: " + laMusicona.getVolumen() + "%");
                                     break;
                                 }
                             }
@@ -145,17 +99,16 @@ public class Principal{
                     }
                     case 3:{
                         if(radioEncendido == true){
-                            int entrada;
-                            int respuestaEmi;
-                            int respuestaEmisoras;
-                            int respuestaIngreso;
-                            int cantidadEmi;
-                            int respuestaCargar;
-                            int entradaCargo;
+                            int entrada, respuestaFM, respuestaEmi, respuestaEmisoras, respuestaIngreso, cantidadEmi, respuestaCargar, entradaCargo;
                             double emisora = 0.00;
                             String operador = "";
-                            laMusicona.cambiarFmAm();
-                            System.out.println("La emisora actual es:" + laMusicona.getEmisora());
+                            System.out.println("La frecuencia actual es de: " + laMusicona.getFmAm() + "\n¿Deseas cambiarlo? \n [1] si \n [2] no");
+                            respuestaFM = teclado.nextInt();
+                            if(respuestaFM == 1)
+                            {
+                                laMusicona.cambiarFmAm();
+                            }
+                            System.out.println("La emisora actual es:" + laMusicona.getEmisoraActual());
                             System.out.println("¿Quieres modificar la emisora? \n [1] si \n [2] no ");
                             respuestaEmi = teclado.nextInt();
                             teclado.nextLine();
@@ -183,7 +136,7 @@ public class Principal{
                                 teclado.nextLine();
                                 if(respuestaIngreso == 1)
                                 {
-                                    laMusicona.guardarEmisora(laMusicona.getEmisora());
+                                    laMusicona.guardarEmisora(Double.toString(laMusicona.getEmisoraActual()));
                                 }else if(respuestaIngreso == 2)
                                 {
                                     System.out.println("¿Cuántas emisoras deseas guardar?: ");
@@ -193,7 +146,7 @@ public class Principal{
                                         System.out.println("Ingresa la emisora que deseas guardar: ");
                                         emisora = teclado.nextDouble();
                                         teclado.nextLine();
-                                        laMusicona.guardarEmisora(emisora);
+                                        laMusicona.guardarEmisora(Double.toString(emisora));
                                     }
                                 }
                             }
@@ -203,15 +156,13 @@ public class Principal{
                             if(respuestaCargar == 1)
                             {
                                 System.out.println("Las emisoras que puedes cargar son \n ");
-                                for(int i = 0; i<laMusicona.getEmisoras().size(); i++)
+                                for(int i = 0; i<laMusicona.getListaEmisoras().size(); i++)
                                 {
-                                    System.out.println(i + laMusicona.getEmisoras().get(i));
+                                    System.out.println(i + laMusicona.getListaEmisoras().get(i));
                                 }
                                 System.out.println("¿Cuál deseas cargar?: \n");
                                 entradaCargo = teclado.nextInt();
-                                teclado.nextLine();
-                                emisora = laMusicona.getEmisoras().get(entradaCargo);
-                                laMusicona.cargarEmisora(emisora);
+                                laMusicona.cargarEmisora(entradaCargo);
                             }
                         }
                         else if(radioEncendido == false){
@@ -231,13 +182,14 @@ public class Principal{
                             int eleccionCancion = 0;
                             
                             System.out.println("¡Selecciona una lista! ");
-                            System.out.println("playlist 1: \n" + playlist1 + "\nplaylist 2: \n" + playlist2 + "\nplaylist 3: \n" + playlist3);
+                            System.out.println("playlist 1: \n" + laMusicona.getListaCanciones1() + "\nplaylist 2: \n" + laMusicona.getListaCanciones2());
                             seleccionPlaylist = teclado.nextInt();
+                            System.out.println(laMusicona.seleccionarLista(seleccionPlaylist));
                             if(seleccionPlaylist == 1)
                             {
                                 System.out.println("¿Qué cancion deseas escuchar?: ");
                                 eleccionCancion = teclado.nextInt();
-                                laMusicona.escucharCancion(playlist1, eleccionCancion);
+                                laMusicona.escucharCancion(eleccionCancion);
                                 System.out.println("¿Deseas cambiar la canción: \n [1] si \n [2] no");
                                 while(cambiarCancion !=2)
                                 {
@@ -245,10 +197,8 @@ public class Principal{
                                         System.out.println("¿Deseas ir para adelante o para atras en la playlist? \n [1] para adelante \n [2] para atras");
                                         if(direccion == 1)
                                         {
-                                            playlist1.get(eleccionCancion + 1).toString();
                                             laMusicona.cambiarCancion(direccion);
                                         }else if(direccion == 2){
-                                            playlist1.get(eleccionCancion - 1).toString();
                                             laMusicona.cambiarCancion(direccion);
                                         }
 
