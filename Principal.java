@@ -3,7 +3,7 @@
 //
 //  @ Project: Laboratorio #4 de POO
 //  @ File Name: Principal.java
-//  @ Date: 08/11/2022
+//  @ Date: 11/11/2022
 //  @ Author: Carlos Alberto Valladares Guerra & Julio Andrés García Salas Pérez
 //
 //
@@ -36,6 +36,29 @@ public class Principal{
         laMusicona.getListaCanciones2().add(entreNostoros);
         Cancion bachataEnFukuoka = new Cancion("Bachata en fukuoka","3:37","Juan Luis Guerra","bachata");
         laMusicona.getListaCanciones2().add(bachataEnFukuoka);
+
+        contactos Carlos = new contactos("Carlos Valladares", 44605615);
+        laMusicona.getListaContactos().add(Carlos);
+        contactos Mirna = new contactos("Mirna Oscal", 54250989);
+        laMusicona.getListaContactos().add(Mirna);
+        contactos Oscar = new contactos("Oscar Álvarez", 34560219);
+        laMusicona.getListaContactos().add(Oscar);
+        contactos Mario = new contactos("Mario Aldana", 23103212);
+        laMusicona.getListaContactos().add(Mario);
+        contactos Alejandro = new contactos("Alejando Giammattei", 21254045);
+        laMusicona.getListaContactos().add(Alejandro);
+
+        TarjetaPresentacion Carlos1 = new TarjetaPresentacion("44605615", "Carlos", "Ingeniero");
+        laMusicona.getListadoTarjetaPresentacion().add(Carlos1);
+        TarjetaPresentacion Mirna1 = new TarjetaPresentacion("54250989", "Mirna Oscal", "Arquitecta");
+        laMusicona.getListadoTarjetaPresentacion().add(Mirna1);
+        TarjetaPresentacion Oscar1 = new TarjetaPresentacion("34560219", "Oscar Álvarez", "Ciberseguridad");
+        laMusicona.getListadoTarjetaPresentacion().add(Oscar1);
+        TarjetaPresentacion Mario1 = new TarjetaPresentacion("23103212", "Mario Aldana", "Carpintero");
+        laMusicona.getListadoTarjetaPresentacion().add(Mario1);
+        TarjetaPresentacion Alejandro1 = new TarjetaPresentacion("21254045", "Alejando Giammattei", "Presidente");
+        laMusicona.getListadoTarjetaPresentacion().add(Alejandro1);
+
 
         boolean radioEncendido = false;
 
@@ -216,49 +239,51 @@ public class Principal{
                         break;
                         
                     }
+
+
+
+
+
                     case 5:{
                         /* Añadir todas las funciones del modo Teléfono comparando si el radio se encuentra encendido */
 
                         if(radioEncendido == true){
                            
                             boolean llamadaStatus = false;
-                            boolean conectado = false;
                             int respuestaCont;
                             int respuestaLlamadas;
-                            int respuestaIngreso;
                             int finalizarLlamada;
                             int respuestaUltimo;
                             int respuestaConectar;
                             System.out.println("Selecciona la acción que deseas realizar: \n [1] Conectar radio \n [2] Desconectar radio ");
                             respuestaConectar = teclado.nextInt();
                             teclado.nextLine();
-                            laMusicona.conectarDesconectar(respuestaConectar, conectado);
-                            if(conectado == true){
-                                System.out.println("¿Quieres mostrar los contactos? \n [1] si \n [2] no ");
-                                respuestaCont = teclado.nextInt();
-                                teclado.nextLine();
-                                if(respuestaCont == 1)
-                                {
-                                    /* Mostrar contactos */
-                                    laMusicona.getContactos();
-                                }
+                            laMusicona.conectarDesconectar();
+                            if(laMusicona.getModoTelefonoConexion() == true){
+                                System.out.println("El radio actualmente se encuentra en modo: Conectado");
+                                System.out.println("Mostrando el listado de contactos...");
+
+                                /* Mostrar contactos */
+                                System.out.println(laMusicona.contactos());
+
                                 System.out.println("¿Deseas llamar a algún contacto? \n [1] si \n [2] no");
                                 respuestaLlamadas = teclado.nextInt();
                                 teclado.nextLine();
                                 if(respuestaLlamadas == 1)
                                 {
-                                    while(respuestaLlamadas == 1){
-                                        System.out.println("Ingrese el número del contacto al que desea llamar: ");
-                                        respuestaIngreso = teclado.nextInt();
+                                    System.out.println("Ingrese el ID del contacto al que desea llamar: ");
+                                    int contacto = teclado.nextInt();
+                                    teclado.nextLine();
+                                    System.out.println(laMusicona.llamar(contacto));
+
+                                    llamadaStatus = true;
+                                    while(llamadaStatus == true){
+                                        System.out.println("¿Desea terminar la llamada? \nPresione [1] cuando desee terminar la llamada.");
+                                        finalizarLlamada = teclado.nextInt();
                                         teclado.nextLine();
-                                        llamadaStatus = true;
-                                        laMusicona.llamar(respuestaIngreso);
-                                        while(llamadaStatus == true){
-                                            System.out.println("Ingrese [1] cuando desee finalizar la llamada: ");
-                                            finalizarLlamada = teclado.nextInt();
-                                            teclado.nextLine();
-                                            laMusicona.finalizarLlamada(respuestaIngreso);
-                                            respuestaLlamadas = 2;
+                                        if(finalizarLlamada == 1){
+                                            System.out.println(laMusicona.finalizarLlamada());
+                                            llamadaStatus = false;
                                         }
                                     }
                                 }
@@ -267,10 +292,21 @@ public class Principal{
                                 teclado.nextLine();
                                 if(respuestaUltimo == 1)
                                 {
-                                    
+                                    System.out.println(laMusicona.llamarUltimoContacto());
+                                    llamadaStatus = true;
+                                    while(llamadaStatus == true){
+                                        System.out.println("¿Desea terminar la llamada? \nPresione [1] cuando desee terminar la llamada.");
+                                        finalizarLlamada = teclado.nextInt();
+                                        teclado.nextLine();
+                                        if(finalizarLlamada == 1){
+                                            System.out.println(laMusicona.finalizarLlamada());
+                                            llamadaStatus = false;
+                                        }
+                                    }
                                 }
                             }
-                            else if(conectado == false){
+                            else if(laMusicona.getModoTelefonoConexion() == false){
+                                System.out.println("El radio actualmente se encuentra en modo: Desonectado");
                                 System.out.println("Por favor conecte un dispositivo al radio para utilizar esta opción.");
                             }
                         }
@@ -284,13 +320,9 @@ public class Principal{
                         break;
                     }
                     case 6:{
-                        /* Añadir todas las funciones del modo Productividad comparando si el radio se encuentra encendido */
-                        
                         if(radioEncendido == true){
                             System.out.println("Mostrando tarjetas de presentación: ");
-
-
-
+                            System.out.println(laMusicona.verTarjetasPresentacion());
                         }
                         else if(radioEncendido == false){
                             System.out.println("Por favor encienda el radio para utilizar esta opción.");

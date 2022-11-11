@@ -2,8 +2,8 @@
 //
 //
 //  @ Project: Laboratorio #4 de POO
-//  @ File Name: Melodia.java
-//  @ Date: 08/11/2022
+//  @ File Name: Cancion.java
+//  @ Date: 11/11/2022
 //  @ Author: Carlos Alberto Valladares Guerra & Julio Andrés García Salas Pérez
 //
 //

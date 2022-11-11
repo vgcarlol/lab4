@@ -1,11 +1,13 @@
-/**
- * UNIVERSIDAD DEL VALLE DE GUATEMALA
- * DEPARTAMENTO DE INGENIERIA
- * PROGRAMACION ORIENTADA A OBJETOS
- * @author  Jose Alejandro Anton
- * @date    10 - 11 - 2022
- * decribe un contacto
- */
+//
+//
+//
+//  @ Project: Laboratorio #4 de POO
+//  @ File Name: TarjetaPresentacion.java
+//  @ Date: 11/11/2022
+//  @ Author: Carlos Alberto Valladares Guerra & Julio Andrés García Salas Pérez
+//
+//
+//
 
 public class TarjetaPresentacion {
     private String nombre;
