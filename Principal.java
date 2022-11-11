@@ -129,7 +129,7 @@ public class Principal{
                             respuestaFM = teclado.nextInt();
                             if(respuestaFM == 1)
                             {
-                                laMusicona.cambiarFmAm();
+                                System.out.println(laMusicona.cambiarFmAm()); 
                             }
                             System.out.println("La emisora actual es:" + laMusicona.getEmisoraActual());
                             System.out.println("¿Quieres modificar la emisora? \n [1] si \n [2] no ");
@@ -147,7 +147,7 @@ public class Principal{
                                 {
                                     operador = "-";
                                 }
-                                laMusicona.cambiarEmisora(operador);
+                                System.out.println(laMusicona.cambiarEmisora(operador)); 
                             }
                             System.out.println("¿Deseas guardar una emisora? \n [1] si \n [2] no");
                             respuestaEmisoras = teclado.nextInt();
@@ -159,7 +159,7 @@ public class Principal{
                                 teclado.nextLine();
                                 if(respuestaIngreso == 1)
                                 {
-                                    laMusicona.guardarEmisora(Double.toString(laMusicona.getEmisoraActual()));
+                                    System.out.println(laMusicona.guardarEmisora(Double.toString(laMusicona.getEmisoraActual()))); 
                                 }else if(respuestaIngreso == 2)
                                 {
                                     System.out.println("¿Cuántas emisoras deseas guardar?: ");
@@ -169,7 +169,7 @@ public class Principal{
                                         System.out.println("Ingresa la emisora que deseas guardar: ");
                                         emisora = teclado.nextDouble();
                                         teclado.nextLine();
-                                        laMusicona.guardarEmisora(Double.toString(emisora));
+                                        System.out.println(laMusicona.guardarEmisora(Double.toString(emisora))); 
                                     }
                                 }
                             }
@@ -181,11 +181,11 @@ public class Principal{
                                 System.out.println("Las emisoras que puedes cargar son \n ");
                                 for(int i = 0; i<laMusicona.getListaEmisoras().size(); i++)
                                 {
-                                    System.out.println(i + laMusicona.getListaEmisoras().get(i));
+                                    System.out.println("Posición de emisora: " + i + " "+ laMusicona.getListaEmisoras().get(i));
                                 }
                                 System.out.println("¿Cuál deseas cargar?: \n");
                                 entradaCargo = teclado.nextInt();
-                                laMusicona.cargarEmisora(entradaCargo);
+                                System.out.println(laMusicona.cargarEmisora(entradaCargo)); 
                             }
                         }
                         else if(radioEncendido == false){
@@ -205,27 +205,31 @@ public class Principal{
                             int eleccionCancion = 0;
                             
                             System.out.println("¡Selecciona una lista! ");
-                            System.out.println("playlist 1: \n" + laMusicona.getListaCanciones1() + "\nplaylist 2: \n" + laMusicona.getListaCanciones2());
+                            System.out.println("playlist 1: \n" + laMusicona.getListaCanciones1() + "\nplaylist 2: \n" + laMusicona.getListaCanciones2() + "\n Cual quieres elegir? \n [1] \n [2]");
                             seleccionPlaylist = teclado.nextInt();
                             System.out.println(laMusicona.seleccionarLista(seleccionPlaylist));
                             if(seleccionPlaylist == 1)
                             {
                                 System.out.println("¿Qué cancion deseas escuchar?: ");
                                 eleccionCancion = teclado.nextInt();
-                                laMusicona.escucharCancion(eleccionCancion);
-                                System.out.println("¿Deseas cambiar la canción: \n [1] si \n [2] no");
+                                System.out.println(laMusicona.escucharCancion(eleccionCancion));
                                 while(cambiarCancion !=2)
                                 {
-                                    if(cambiarCancion == 1){
+                                    System.out.println("¿Deseas cambiar la canción: \n [1] si \n [2] no");
+                                    cambiarCancion = teclado.nextInt();
+                                    if(cambiarCancion == 1)
+                                    {
                                         System.out.println("¿Deseas ir para adelante o para atras en la playlist? \n [1] para adelante \n [2] para atras");
+                                        direccion = teclado.nextInt();
+                                    }
                                         if(direccion == 1)
                                         {
-                                            laMusicona.cambiarCancion(direccion);
+                                            System.out.println(laMusicona.cambiarCancion(direccion)); 
                                         }else if(direccion == 2){
-                                            laMusicona.cambiarCancion(direccion);
+                                            System.out.println(laMusicona.cambiarCancion(direccion)); 
                                         }
 
-                                    }
+                                    
                                 }
                             }
                         }
